@@ -1,12 +1,16 @@
 let accord_items = document.querySelectorAll(".boxes");
 
+let index_item = 0;
+let text_disp = accord_items[index_item].querySelector(".disp_text");
+let svg_disp = accord_items[index_item].querySelector(".svg");
+svg_disp.style.transform = "rotate(180deg)";
+text_disp.style.display = "block";
+
 
 accord_items.forEach(element => {
     let svg_icon = element.querySelector(".svg");
     let box = element.querySelector(".accord");
     let text = element.querySelector(".disp_text");
-    text.style.display = "none";
-
     element.addEventListener("click", () => {
         accord_items.forEach(otherElement => {
             if (otherElement !== element) {
@@ -20,14 +24,11 @@ accord_items.forEach(element => {
         let currentTransform = getComputedStyle(svg_icon).transform;
         if (currentTransform === "none" || currentTransform === "matrix(1, 0, 0, 1, 0, 0)") {
             svg_icon.style.transform = "rotate(180deg)";
-        } else {
-            svg_icon.style.transform = "rotate(0deg)";
-        }
-
-        if (text.style.display === "none") {
             text.style.display = "block";
         } else {
+            svg_icon.style.transform = "rotate(0deg)";
             text.style.display = "none";
         }
     });
 });
+
